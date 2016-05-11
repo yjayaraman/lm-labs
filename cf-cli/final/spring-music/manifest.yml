@@ -1,0 +1,9 @@
+---
+applications:
+- name: spring-music
+  memory: 512M 
+  buildpack: java_buildpack
+  instances: 1
+  host: spring-music-yj
+  path: ./target/spring-music-0.0.1-SNAPSHOT.war
+

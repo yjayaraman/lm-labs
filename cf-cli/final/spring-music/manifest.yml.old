@@ -1,0 +1,14 @@
+---
+applications:
+- name: spring-music
+  buildpack: java_buildpack_offline
+  memory: 512M
+  instances: 1
+  host: yj-spring-music
+  path: build/libs/spring-music.war
+  command: echo $xx >> first.txt && sed -e "s/test/$xx/g" first.txt >> next.txt && echo $foo >> test.txt && JAVA_HOME=$PWD/.java-buildpack/open_jdk_jre JAVA_OPTS="-Djava.io.tmpdir=$TMPDIR -XX:OnOutOfMemoryError=$PWD/.java-buildpack/open_jdk_jre/bin/killjava.sh -Xmx382293K -Xms382293K -XX:MaxMetaspaceSize=64M -XX:MetaspaceSize=64M -Xss995K -Daccess.logging.enabled=false -Dhttp.port=$PORT" $PWD/.java-buildpack/tomcat/bin/catalina.sh run
+  env:
+    foo: bar
+    xx: test
+    yy: notest
+
