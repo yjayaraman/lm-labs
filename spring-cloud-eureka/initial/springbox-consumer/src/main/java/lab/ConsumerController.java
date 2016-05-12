@@ -3,17 +3,27 @@ package lab;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class ConsumerController {
 	
-	@Autowired
-	ProducerClient producerClient;
+	//@Autowired
+	//ProducerClient producerClient;
 	
-	 @RequestMapping(value = "/", produces = "application/json")
-	 String consume() {
-		 return String.format("{\"value\":%s}", producerClient.getValue());
-	 }
+    @Autowired
+    RestTemplate restTemplate;
+
+    @RequestMapping(value = "/", produces = "application/json")
+    String consume() {
+        String response = restTemplate.getForObject("http://springbox-catalog/movies/1", String.class);
+        return String.format("{\"value\":%s}", response);
+    }
+	
+//	 @RequestMapping(value = "/", produces = "application/json")
+//	 String consume() {
+//		 return String.format("{\"value\":%s}", producerClient.getValue());
+//	 }
 
 
 //	 @Autowired
