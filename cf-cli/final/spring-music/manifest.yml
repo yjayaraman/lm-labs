@@ -2,8 +2,8 @@
 applications:
 - name: spring-music
   memory: 512M 
-  buildpack: java_buildpack
+  buildpack: java_buildpack_offline
   instances: 1
-  host: spring-music
+  host: spring-music-XX #replace with initials and/or numbers to make unique
   path: ./target/spring-music-0.0.1-SNAPSHOT.war
 
